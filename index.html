@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open in Google Chrome</title>
+  <script>
+    function redirect() {
+      // Detect the user's device and OS
+      var userAgent = navigator.userAgent;
+
+      // Android devices
+      if (/Android/i.test(userAgent)) {
+        window.location = 'intent://#Intent;scheme=https;package=com.android.chrome;end';
+      
+      // iOS devices
+      } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        window.location = 'googlechrome://';
+      
+      // Desktop (Windows, MacOS, etc.)
+      } else {
+        // Attempt to open Chrome on desktop
+        window.location = 'googlechrome://';
+
+        // Fallback to the default browser if Chrome is not available after 1 second
+        setTimeout(function() {
+          window.location = 'https://';
+        }, 1000);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Open Link in Google Chrome</h1>
+  <p>
+    Click the link below to open this in Google Chrome. If Chrome is not available, the link will open in your default browser.
+  </p>
+  <a href="#" onclick="redirect()">Open in Google Chrome</a>
+</body>
+</html>
